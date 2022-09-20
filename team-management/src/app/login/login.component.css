@@ -1,0 +1,72 @@
+.container
+{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.signUp
+{
+    justify-self: center;
+    align-self: center;
+}
+
+.icon{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.parentCard
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:2px;
+    width: 60%;
+    height: 400px;
+    margin-top: 5%;
+}
+
+.card1
+{
+    display:grid ;
+    grid-template-rows: 65px 35px 63px auto 20px;
+}
+
+.title,.desc,.form-details
+{
+    justify-self: center;
+}
+
+.text-danger
+{
+    color: red;
+}
+
+.icon,.footer
+{
+    justify-self: center;
+    align-self: center;
+}
+
+.desc
+{
+    align-self: end;
+}
+.formStyle
+{
+    display: grid;
+}
+
+.card2
+{
+    display: grid;
+    background:  #ad5389;
+}
+
+.context
+{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}

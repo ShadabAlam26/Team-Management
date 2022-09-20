@@ -1,0 +1,48 @@
+<div class="container">
+    <mat-card class="parentCard">
+        <div class="card1">
+            <div class="title">
+                <h1>Login Form</h1>
+            </div>
+            <div class="icon">
+                <mat-icon>work</mat-icon>
+                <mat-icon>verified_user</mat-icon>
+            </div>
+            <div class="desc">
+                <p>or use your account</p>
+            </div>
+            <div class="form-details">
+                <form [formGroup]="loginForm" class="formStyle">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Enter your username" type="email" formControlName="email" name="email" required>
+                        <div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched">
+                            <small class="text-danger" *ngIf="loginForm.get('email')!.errors?.['required']">Email is required.</small>
+                            <small class="text-danger" *ngIf="loginForm.get('email')!.errors?.['pattern']">Email pattern not correct.</small>
+                        </div>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Enter your password" type="password" formControlName="password" name="password" required>
+                        <div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched">
+                            <small class="text-danger" *ngIf="loginForm.get('password')!.errors?.['required']">Password is required.</small>
+                        </div>
+                    </mat-form-field>
+                    <button mat-raised-button [disabled]="!loginForm.valid" color="primary" (click)="loginDetail()">Login</button>
+                </form>
+            </div>
+            <div class="footer">
+                <p><a href=""> Forgot your password??</a></p>
+            </div>
+        </div>
+        <div class="card2">
+            <h1 class="signUp">SignUp Form</h1>
+            <div class="context">
+                <p>Please get connected with us by registring.</p>
+                <a routerLink="register">Register Here</a>
+            </div>
+         
+        </div>
+
+    </mat-card>
+</div>
