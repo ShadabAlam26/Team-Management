@@ -7,11 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  public _loginUrl!: 'http://localhost:3000/registerUser';
+  private _loginUrl =  "http://localhost:3000/registerUser";
   constructor(private http: HttpClient) { }
 
-  loginDetails():Observable<any>
+  loginDetails()
   {
-    return this.http.get<Observable<any>>(this._loginUrl);
+    return this.http.get<any>(this._loginUrl);
+  }
+
+  loggedIn()
+  {
+    return !!localStorage.getItem('token')
+  }
+
+  teamList()
+  {
+    return this.http.get<any>("https://mocki.io/v1/a638c068-89c2-4e24-8447-20a03f5e7b77");
   }
 }

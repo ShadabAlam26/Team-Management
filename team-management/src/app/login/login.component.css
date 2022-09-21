@@ -3,6 +3,8 @@
     display: grid;
     justify-items: center;
     align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #009fff, #ec2f4b);
 }
 
 .signUp
