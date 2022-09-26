@@ -30,9 +30,14 @@ table {
   
   .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    width: 80%;
+    margin-left: 8%;
   }
   
-  td, th {
-    width: 25%;
-  }
+
+.table-detail
+{
+    margin-top: 10px; 
+    width: 80%;
+    margin-left: 8%;
+}

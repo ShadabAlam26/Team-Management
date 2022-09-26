@@ -1,0 +1,48 @@
+
+<div class="team-header">
+    <h1>View Team Details <mat-icon>whatshot</mat-icon></h1>
+</div>
+
+<div class="sub-header">
+   <div class="details">
+    <h3>GameActivityId :</h3>
+    <p>{{data.GameActivityId}}</p>
+   </div>
+   <div class="details">
+    <h3>GameActivityTag :</h3>
+    <p>{{data.GameActivityTag}}</p>
+   </div>
+   <div class="details">
+    <h3>GameDescription :</h3>
+    <p>{{data.GameActivityDescription}}</p>
+   </div>
+   <div class="details">
+    <h3>StartDate :</h3>
+    <p>{{data.StartDate}}</p>
+   </div>
+   <div class="details">
+    <h3>EndDate :</h3>
+    <p *ngIf="data.EndDate===null">Not Yet</p>
+    <p *ngIf="data.EndDate!==null">{{data.EndDate}}</p>
+   </div>
+   <div class="details">
+    <h3>TeamName :</h3>
+    <p>{{data.TeamName}}</p>
+   </div>
+   <div class="details">
+    <h3>TeamCode :</h3>
+    <p>{{data.TeamCode}}</p>
+   </div>
+   <div class="details">
+    <h3>TeamMemberCount :</h3>
+    <p>{{data.TeamMemberCount}}</p>
+   </div>
+   <div class="details">
+    <h3>PlayerCount :</h3>
+    <p>{{data.PlayerCount}}</p>
+   </div>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button  color="warn" mat-dialog-close>Close</button>
+</div>

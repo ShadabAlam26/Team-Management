@@ -2,20 +2,12 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { map, Observable } from 'rxjs';
 import { LoginService } from '../service/login.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
+import { Router } from '@angular/router';
 
-export interface TeamList {
-  GameActivityId: string;
-  GameActivityTag: string;
-  GameActivityIdTag: string;
-  GameActivityDescription: string;
-  StartDate: string;
-  EndDate: string;
-  TeamCode:string;
-  TeamName:string;
-  TeamMemberCount:number;
-  PlayerCount:number
-}
 
 @Component({
   selector: 'app-create-team',
@@ -26,26 +18,25 @@ export interface TeamList {
 
 export class CreateTeamComponent implements OnInit {
 
-  teamDetails!: TeamList[];
-  displayedColumns: string[] = ['GameActivityId', 'GameActivityTag', 'GameActivityIdTag', 'GameActivityDescription','StartDate','EndDate','TeamCode','TeamName','TeamMemberCount','PlayerCount'];
-  dataSource!: MatTableDataSource<TeamList>;
+  teamDetails!:any;
+  displayedColumns: string[] = ['GameActivityId', 'GameActivityTag','TeamName','StartDate','EndDate','TeamCode'];
+  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private team:LoginService) { }
+  constructor(private team:LoginService,private dialog:MatDialog,private route:Router) { }
 
   ngOnInit(): void {
+     
     this.team.teamList().subscribe(res=>{
-      console.log(res);
-      // this.teamDetails = res;
-      // this.dataSource = new MatTableDataSource(res);
+      this.teamDetails = res;
+      this.dataSource = new MatTableDataSource(this.teamDetails);
+      this.dataSource.paginator = this.paginator;
+      console.log(this.dataSource.paginator)
+      this.dataSource.sort = this.sort;
     })
-  }
 
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -55,6 +46,21 @@ export class CreateTeamComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  viewDetails(val:any,_enter: string,_exit: string)
+  {
+      this.dialog.open(DialogComponentComponent, {
+        width:'30%',
+        data:val,
+        enterAnimationDuration:_enter,
+        exitAnimationDuration:_exit
+     })
+  }
+
+  createTeam()
+  {
+    this.route.navigate(['/add-team'])
   }
 
 }

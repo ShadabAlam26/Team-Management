@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,8 @@ export class LoginService {
 
   teamList()
   {
-    return this.http.get<any>("https://mocki.io/v1/a638c068-89c2-4e24-8447-20a03f5e7b77");
+    return this.http.get<any>("http://localhost:3000/Team").pipe(
+       map(res => res)
+    );
   }
 }

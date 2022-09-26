@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddTeamComponent } from './add-team/add-team.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,11 @@ const routes: Routes = [
      path:"createTeam",
      component:CreateTeamComponent,
      canActivate:[AuthGuard]
+  },
+  {
+      path:"add-team",
+      component:AddTeamComponent,
+      canActivate:[AuthGuard]
   },
   {
      path:"**",

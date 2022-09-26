@@ -1,0 +1,99 @@
+<div class="button-container">
+    <button mat-raised-button  color="primary" (click)="backToMenu()">Back to Main-Menu</button>
+</div>
+
+<div class="container">
+    <mat-card>
+        <h1>Add Team Detail</h1>
+            <mat-stepper #stepper>
+                <mat-step [stepControl]="addTeam" errorMessage="Team Detail is required.">
+                    <form action="" [formGroup]="addTeam" class="form-detail">
+                        <ng-template matStepLabel>Create Team Details</ng-template>
+                        <div class="detail">
+                            <mat-form-field appearance="fill">
+                                <mat-label>GameActivityId</mat-label>
+                                <mat-select formControlName="id" name="id" (selectionChange)="changeId($event.value)">
+                                  <mat-option [value]="val" *ngFor="let val of gameId">{{val}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>GameActivityTag</mat-label>
+                                <mat-select formControlName="tag" name="tag"  (selectionChange)="changeTag($event.value)">
+                                    <mat-option [value]="val" *ngFor="let val of gameTag">{{val}}</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="detail">
+                            <mat-form-field appearance="fill">
+                                <mat-label>GameActivityIdTag</mat-label>
+                                <input matInput   formControlName="idTag" name="idTag">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>GameActivityDescription</mat-label>
+                                <input matInput type="text"  formControlName="desc" name="desc" placeholder="Enter Description">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="detail">
+                            <mat-form-field appearance="fill">
+                                <mat-label>StartDate</mat-label>
+                                <input readonly matInput [matDatepicker]="StartDate" formControlName="StartDate" [min]="minDate"  (dateChange)="onDateChange($event)" >
+                                <mat-hint>YYYY/MM/DD</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="StartDate"></mat-datepicker-toggle>
+                                <mat-datepicker #StartDate></mat-datepicker>
+                              </mat-form-field>
+                              <mat-form-field appearance="fill">
+                                <mat-label>EndDate</mat-label>
+                                <input readonly matInput [matDatepicker]="picker" formControlName="EndDate" [min]="validateDate" (dateChange)="onEndDateChange($event)" [disabled]="!addTeam.get('StartDate')?.valid">
+                                <mat-hint>YYYY/MM/DD</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker [disabled]="!addTeam.get('StartDate')?.valid"></mat-datepicker>
+                              </mat-form-field>
+                        </div>
+                        
+                        <button mat-raised-button [disabled]="!addTeam.valid" color="primary" class="btn1"  matStepperNext (click)="createTeam()">Next</button>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="gameDetail" errorMessage="Game Detail is required.">
+                    <form action="" [formGroup]="gameDetail" class="form-detail">
+                        <ng-template matStepLabel>Create Game Detail</ng-template>
+                        <div class="detail">
+                            <mat-form-field appearance="fill">
+                                <mat-label>TeamCode</mat-label>
+                                <input matInput   formControlName="TeamCode" name="teamCode">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>TeamName</mat-label>
+                                <input matInput type="text"  formControlName="TeamName" name="teamName" placeholder="Enter Team Name">
+                            </mat-form-field>
+                        </div>
+                        <div class="detail">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="Gender" name="gender">
+                                  <mat-option [value]="val" *ngFor="let val of gender">{{val}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>PlayerCount</mat-label>
+                                <input matInput type="number"  formControlName="PlayerCount" name="PlayerCount" placeholder="Enter Player Count">
+                            </mat-form-field>
+                        </div>
+                        <div class="detail">
+                            <mat-form-field appearance="fill">
+                                <mat-label>TeamMemberCount</mat-label>
+                                <input matInput type="number"  formControlName="TeamMemberCount" name="TeamMemberCount" placeholder="Enter Team Member Count">
+                            </mat-form-field>
+                        </div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-raised-button [disabled]="!(gameDetail.valid && addTeam.valid)" color="primary" type="submit" (click)="createGame()">Submit</button>
+                    </form>
+                </mat-step>
+            </mat-stepper>
+    </mat-card>
+</div>
+
+//To-Do
+
+1. Merge Two Object
+2. Write the post api

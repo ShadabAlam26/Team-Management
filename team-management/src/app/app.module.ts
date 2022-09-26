@@ -13,10 +13,36 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTableModule} from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
 import { CreateTeamComponent } from './create-team/create-team.component';
+import { DialogComponentComponent } from './dialog-component/dialog-component.component';
+import { AddTeamComponent } from './add-team/add-team.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {
+  DateAdapter,
+  MatNativeDateModule,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+const MY_DATE_FORMAT = {
+  parse: {
+    dateInput: 'YYYY/MM/DD', // this is how your date will be parsed from Input
+  },
+  display: {
+    dateInput: 'YYYY/MM/DD', // this is how your date will get displayed on the Input
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -24,13 +50,17 @@ import { CreateTeamComponent } from './create-team/create-team.component';
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    CreateTeamComponent
+    CreateTeamComponent,
+    DialogComponentComponent,
+    AddTeamComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -38,9 +68,19 @@ import { CreateTeamComponent } from './create-team/create-team.component';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatStepperModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
