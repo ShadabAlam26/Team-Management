@@ -8,6 +8,7 @@
   ],
   "Team": [
     {
+      "id": 1,
       "GameActivityId": "SOCCER-ZA-AL",
       "GameActivityTag": "STANDARD",
       "GameActivityIdTag": "SOCCER-ZA-AL/STANDARD",
@@ -32,6 +33,7 @@
       "IsEditAllowed": true
     },
     {
+      "id": 2,
       "GameActivityId": "SOCCER-VE-AL",
       "GameActivityTag": "SATURDAY",
       "GameActivityIdTag": "SOCCER-VE-AL/SATURDAY",
@@ -56,6 +58,7 @@
       "IsEditAllowed": true
     },
     {
+      "id": 3,
       "GameActivityId": "SOCCER-VE-AL",
       "GameActivityTag": "SATURDAY",
       "GameActivityIdTag": "SOCCER-VE-AL/SATURDAY",
@@ -80,6 +83,7 @@
       "IsEditAllowed": true
     },
     {
+      "id": 4,
       "GameActivityId": "SOCCER-VE-AL",
       "GameActivityTag": "SATURDAY",
       "GameActivityIdTag": "SOCCER-VE-AL/SATURDAY",

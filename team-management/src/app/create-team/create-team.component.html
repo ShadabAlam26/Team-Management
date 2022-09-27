@@ -5,6 +5,10 @@
         <mat-icon matSuffix>perm_identity</mat-icon>
         Create Team
     </button>
+    <button class="btn" mat-raised-button color="primary" (click)="logOut()">
+      <mat-icon>supervised_user_circle</mat-icon>
+      LogOut
+    </button>
 </div>
 
 <!-- <div class="search-input">
@@ -40,24 +44,21 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>StartDate</th>
             <td mat-cell *matCellDef="let row">{{row.StartDate | date}}</td>
           </ng-container>
-
-          //How to use *ngIf in mat-table ?
-
           <ng-container matColumnDef="EndDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>EndDate</th>
             <td mat-cell *matCellDef="let row">
               <div *ngIf="row.EndDate===null">Not Yet</div>
-              <div *ngIf="row.EndDate!==null">{{row.EndDate}}</div>
+              <div *ngIf="row.EndDate!==null">{{row.EndDate | date}}</div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="TeamCode">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row;let i = index">
                 <button mat-icon-button color="primary" (click)="viewDetails(row,'3000ms', '1500ms')">
                     <mat-icon>remove_red_eye</mat-icon>
                 </button>
-                <button mat-icon-button color="warn">
+                <button mat-icon-button color="warn" (click)="deleteData(row,i)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

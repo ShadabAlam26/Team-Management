@@ -7,12 +7,12 @@ import { map, Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private _loginUrl =  "http://localhost:3000/registerUser";
+  private _loginUrl =  "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
   loginDetails()
   {
-    return this.http.get<any>(this._loginUrl);
+    return this.http.get<any>(this._loginUrl + 'registerUser');
   }
 
   loggedIn()
@@ -22,8 +22,18 @@ export class LoginService {
 
   teamList()
   {
-    return this.http.get<any>("http://localhost:3000/Team").pipe(
+    return this.http.get<any>(this._loginUrl+"Team").pipe(
        map(res => res)
     );
+  }
+
+  addTeamDetails(detail:any)
+  {
+     return this.http.post<any>(this._loginUrl+"Team",detail)
+  }
+
+  deleteDetails(id:number)
+  {
+    return this.http.delete<any>(this._loginUrl+"Team/"+id)
   }
 }

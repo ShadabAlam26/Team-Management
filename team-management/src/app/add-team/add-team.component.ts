@@ -6,6 +6,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-add-team',
@@ -27,8 +28,8 @@ export class AddTeamComponent implements OnInit {
   date1!:string;
   validateDate!: any;
 
-  constructor( private fb: UntypedFormBuilder,private http: HttpClient,private route:Router) { }
-  public gameId =['ZA-AL', 'VE-AL'];
+  constructor( private fb: UntypedFormBuilder,private login: LoginService,private route:Router) { }
+  public gameId =['SOCCER-ZA-AL', 'SOCCER-VE-AL'];
   public gameTag = ['STANDARD', 'SATURDAY', 'SUNDAY'];
   public gender =["Male","Female","Mixed"]
   selected1!:string;
@@ -42,10 +43,10 @@ export class AddTeamComponent implements OnInit {
 
     console.log(this.gameId);
     this.addTeam = this.fb.group({
-      id:['',Validators.required],
-      tag:['',Validators.required],
+      GameActivityId:['',Validators.required],
+      GameActivityTag:['',Validators.required],
       idTag:['',Validators.required],
-      desc:['',Validators.required],
+      GameActivityDescription:['',Validators.required],
       StartDate:['',Validators.required],
       EndDate:['',Validators.required]
     })
@@ -71,7 +72,7 @@ export class AddTeamComponent implements OnInit {
   changeTag(val:any)
   {
     console.log(val)
-    this.selected2 = this.selected1 + "/"+val;
+    this.selected2 = this.selected1 + "/" + val;
     this.addTeam.get('idTag')?.setValue(this.selected2);
     this.addTeam.get('idTag')?.disable()
   }
@@ -88,7 +89,18 @@ export class AddTeamComponent implements OnInit {
 {
   // this.addTeam.get('StartDate')?.setValue(moment(this.addTeam.get('StartDate')?.value._d).format('YYYY/MM/DD'));
   console.log(this.gameDetail.value,this.addTeam.getRawValue());
-  
+  const newItem = {...this.addTeam.getRawValue(),...this.gameDetail.value}; // or { ...response } if you want to clone response as well
+   
+  this.login.addTeamDetails(newItem).subscribe({
+    next:(res)=>{
+      alert('Team Detail Added successfully!!')
+      this.route.navigate(['/createTeam'])
+    },
+    error:()=>{
+      alert('Error While adding the team detail!!')
+    }
+  }
+  )
 }
 
 onDateChange(eve:any)
@@ -106,9 +118,6 @@ onEndDateChange(val:any)
 
 backToMenu()
 {
-  //  this.addTeam.reset();
-  //  this.gameDetail.reset();
-
   this.route.navigate(['/createTeam']);
 }
 

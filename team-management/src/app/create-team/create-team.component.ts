@@ -29,6 +29,12 @@ export class CreateTeamComponent implements OnInit {
 
   ngOnInit(): void {
      
+    this.getTeamDetails();
+
+  }
+
+  getTeamDetails()
+  {
     this.team.teamList().subscribe(res=>{
       this.teamDetails = res;
       this.dataSource = new MatTableDataSource(this.teamDetails);
@@ -36,7 +42,6 @@ export class CreateTeamComponent implements OnInit {
       console.log(this.dataSource.paginator)
       this.dataSource.sort = this.sort;
     })
-
   }
 
   applyFilter(event: Event) {
@@ -61,6 +66,26 @@ export class CreateTeamComponent implements OnInit {
   createTeam()
   {
     this.route.navigate(['/add-team'])
+  }
+
+  deleteData(row:any,index:number)
+  {
+      this.team.deleteDetails(row.id).subscribe({
+        next:(res)=>{
+          alert(`${row.TeamName} Details Deleted Successfully!!!`);
+          this.getTeamDetails();
+        },
+        error:()=>{
+          alert("Error while deleting the Team Details!!")
+        }
+      });
+      
+  }
+
+  logOut()
+  {
+      this.route.navigate(['/login']);
+      localStorage.removeItem('token')
   }
 
 }

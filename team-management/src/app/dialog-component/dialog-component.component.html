@@ -18,12 +18,12 @@
    </div>
    <div class="details">
     <h3>StartDate :</h3>
-    <p>{{data.StartDate}}</p>
+    <p>{{data.StartDate | date}}</p>
    </div>
    <div class="details">
     <h3>EndDate :</h3>
     <p *ngIf="data.EndDate===null">Not Yet</p>
-    <p *ngIf="data.EndDate!==null">{{data.EndDate}}</p>
+    <p *ngIf="data.EndDate!==null">{{data.EndDate | date}}</p>
    </div>
    <div class="details">
     <h3>TeamName :</h3>

@@ -12,13 +12,13 @@
                         <div class="detail">
                             <mat-form-field appearance="fill">
                                 <mat-label>GameActivityId</mat-label>
-                                <mat-select formControlName="id" name="id" (selectionChange)="changeId($event.value)">
+                                <mat-select formControlName="GameActivityId" name="GameActivityId" (selectionChange)="changeId($event.value)">
                                   <mat-option [value]="val" *ngFor="let val of gameId">{{val}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="fill">
                                 <mat-label>GameActivityTag</mat-label>
-                                <mat-select formControlName="tag" name="tag"  (selectionChange)="changeTag($event.value)">
+                                <mat-select formControlName="GameActivityTag" name="tag"  (selectionChange)="changeTag($event.value)">
                                     <mat-option [value]="val" *ngFor="let val of gameTag">{{val}}</mat-option>
                                   </mat-select>
                             </mat-form-field>
@@ -30,7 +30,7 @@
                             </mat-form-field>
                             <mat-form-field appearance="fill">
                                 <mat-label>GameActivityDescription</mat-label>
-                                <input matInput type="text"  formControlName="desc" name="desc" placeholder="Enter Description">
+                                <input matInput type="text"  formControlName="GameActivityDescription" name="desc" placeholder="Enter Description">
                             </mat-form-field>
                         </div>
 
@@ -92,8 +92,3 @@
             </mat-stepper>
     </mat-card>
 </div>
-
-//To-Do
-
-1. Merge Two Object
-2. Write the post api
