@@ -41,7 +41,6 @@ export class AddTeamComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.gameId);
     this.addTeam = this.fb.group({
       GameActivityId:['',Validators.required],
       GameActivityTag:['',Validators.required],
@@ -58,8 +57,6 @@ export class AddTeamComponent implements OnInit {
       PlayerCount :['',Validators.required],
       TeamMemberCount:['',Validators.required]
     })
-
-    console.log(this.addTeam.value);
     
   }
 
@@ -90,7 +87,6 @@ export class AddTeamComponent implements OnInit {
   // this.addTeam.get('StartDate')?.setValue(moment(this.addTeam.get('StartDate')?.value._d).format('YYYY/MM/DD'));
   console.log(this.gameDetail.value,this.addTeam.getRawValue());
   const newItem = {...this.addTeam.getRawValue(),...this.gameDetail.value}; // or { ...response } if you want to clone response as well
-   
   this.login.addTeamDetails(newItem).subscribe({
     next:(res)=>{
       alert('Team Detail Added successfully!!')
